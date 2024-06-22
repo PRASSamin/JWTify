@@ -64,7 +64,7 @@ const PageMenus = ({ pageMenus }) => {
       {/* Menu Button */}
       <button
         onClick={() => setIsPageMenuOpen(!isPageMenuOpen)}
-        className="menu shadow-md shadow-black/50 bg-gray-700 p-3 fixed bottom-5 rounded-full right-5 hover:bg-gray-600 transition-all duration-300"
+        className="menu z-[999] shadow-md shadow-black/50 bg-gray-700 p-3 fixed bottom-5 rounded-full right-5 hover:bg-gray-600 transition-all duration-300"
       >
         <svg
           fill="currentColor"
@@ -80,7 +80,7 @@ const PageMenus = ({ pageMenus }) => {
       </button>
 
       {/* Menu */}
-      <div className={`${isPageMenuOpen ? "max-h-80" : "max-h-0"} menu rounded-lg shadow-md shadow-black/50 transition-all duration-300 overflow-y-auto fixed bottom-[91px] right-5 z-20`}>
+      <div className={`${isPageMenuOpen ? "max-h-80" : "max-h-0"} menu rounded-lg shadow-md shadow-black/50 transition-all duration-300 overflow-y-auto fixed bottom-[91px] right-5 z-[999]`}>
         {pageMenus.map((pageMenu, index) => (
           <div key={index} onClick={() => handleMenuItemClick(pageMenu.id)} className="cursor-pointer">
             <div className="font-bold text-white px-5 py-4 bg-gray-700 transition-all duration-300">
