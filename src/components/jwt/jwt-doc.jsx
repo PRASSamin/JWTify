@@ -1,39 +1,34 @@
 import React, { useEffect, useState } from "react";
-import JWTSignature from "../../assets/jwt-structure.png";
+import JWTSignature from "../../assets/images/jwt-structure.png";
 import "./jwt-doc.css";
 import PageMenus from "../global/page-menus";
 
 const JWTDoc = () => {
-  const [AllPageMenus, setAllPageMenus] = useState([]);
+  const [allPageMenus, setAllPageMenus] = useState([]);
 
-  function fetchAllIds() {
-    const allElements = document.querySelectorAll('*');
-    const idsWithDataName = [];
-  
-    allElements.forEach(element => {
-      const id = element.id;
-      if (id && id !== "root") {
-        const name = element.getAttribute('data-name');
-        idsWithDataName.push({ id, name });
-      }
-    });
-  
-    return idsWithDataName;
-  }
-  
-  
   useEffect(() => {
-    const ids =  fetchAllIds();
-    setAllPageMenus(
-      ids.map(({ id, name }) => ({ id, name }))
-    );
+    const fetchAllIds = () => {
+      const allElements = document.querySelectorAll('*');
+      const idsWithDataName = [];
+
+      allElements.forEach(element => {
+        const id = element.id;
+        if (id && id !== "root") {
+          const name = element.getAttribute('data-name');
+          idsWithDataName.push({ id, name });
+        }
+      });
+
+      return idsWithDataName;
+    };
+
+    const ids = fetchAllIds();
+    setAllPageMenus(ids.map(({ id, name }) => ({ id, name })));
   }, []);
 
   return (
-    <div
-      className="relative lg:container w-[95%] md:w-[80%] mx-auto mt-14 mb-10"
-    >
-      <div id="what_is_jwt" data-name="What is JWT">
+    <div className="relative lg:container w-[95%] md:w-[80%] mx-auto mt-14 mb-10">
+      <section id="what_is_jwt" data-name="What is JWT">
         <h1 className="text-[24px] md:text-[30px] font-semibold mb-1">
           What is JWT (JSON Web Token)?
         </h1>
@@ -79,15 +74,15 @@ const JWTDoc = () => {
             altered in transit.
           </li>
         </ul>
-        <div className="w-full flex justify-center pt-12 pb-20 ">
+        <div className="w-full flex justify-center pt-12 pb-20">
           <img
-            className=" w-[80%] sm:w-[70%] md:w-[60%] lg:w-[40%] p-4 border-dashed border-2 border-black rounded-lg"
+            className="w-[80%] sm:w-[70%] md:w-[60%] lg:w-[40%] p-4 border-dashed border-2 border-black rounded-lg"
             src={JWTSignature}
             alt="structure"
           />
         </div>
-      </div>
-      <div id="how_to_use" data-name="How to Use This Tool">
+      </section>
+      <section id="how_to_use" data-name="How to Use This Tool">
         <h1 className="text-[24px] md:text-[30px] font-semibold mb-1">
           How to Use This Tool
         </h1>
@@ -125,8 +120,8 @@ const JWTDoc = () => {
           key, displaying the result as "Valid" or "Invalid." This verification
           process ensures the token's integrity and authenticity.
         </p>
-      </div>
-      <PageMenus pageMenus={AllPageMenus}/>
+      </section>
+      <PageMenus pageMenus={allPageMenus} />
     </div>
   );
 };

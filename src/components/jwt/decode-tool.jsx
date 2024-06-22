@@ -12,13 +12,11 @@ import {
   verifyHS512,
   verifyHS384,
 } from "../utils";
-import fs from "fs";
 import Alert from "../global/alert";
 
-const Converter = () => {
+const Decoder = () => {
   const LoadEnv = import.meta.env.VITE_TOKEN_TEXTS;
   const PlainText = JSON.parse(LoadEnv);
-
   const { tokens, keys } = PlainText;
 
   const defaultTokens = {
@@ -37,33 +35,19 @@ const Converter = () => {
     HS256: keys.HS256,
     HS384: keys.HS384,
     HS512: keys.HS512,
-    RS256: {
-      key: keys.RS256,
-    },
-    RS384: {
-      key: keys.RS384,
-    },
-    RS512: {
-      key: keys.RS512,
-    },
-    ES256: {
-      key: keys.ES256,
-    },
-    ES384: {
-      key: keys.ES384,
-    },
-    ES512: {
-      key: keys.ES512,
-    },
+    RS256: { key: keys.RS256 },
+    RS384: { key: keys.RS384 },
+    RS512: { key: keys.RS512 },
+    ES256: { key: keys.ES256 },
+    ES384: { key: keys.ES384 },
+    ES512: { key: keys.ES512 },
   };
 
   const [userJWTData, setUserJWTData] = useState({
     token: defaultTokens["HS256"],
     algorithm: "HS256",
   });
-
   const [secretKey, setSecretKey] = useState(defaultSecretKeys["HS256"]);
-
   const [decodedHeader, setDecodedHeader] = useState({});
   const [decodedPayload, setDecodedPayload] = useState({});
   const [decodedSignature, setDecodedSignature] = useState("");
@@ -71,10 +55,10 @@ const Converter = () => {
   const [TokenInputFocused, setTokenInputFocused] = useState(false);
   const [isWantVerify, setIsWantVerify] = useState(false);
   const [alertInfo, setAlertInfo] = useState({});
-
   const [isOpen, setIsOpen] = useState(false);
   const [isTokenPasted, setIsTokenPasted] = useState(false);
   const [isSecretKeyPasted, setIsSecretKeyPasted] = useState(false);
+  const dropdownRef = useRef(null);
 
   const algorithmOptions = [
     { label: "HS256", value: "HS256" },
@@ -91,17 +75,13 @@ const Converter = () => {
     { label: "PS512", value: "PS512" },
   ];
 
-  const dropdownRef = useRef(null);
-
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsOpen(false);
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
-
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -121,6 +101,7 @@ const Converter = () => {
       setDecodedHeader({});
       setDecodedPayload({});
       setDecodedSignature("");
+      setAlertInfo({ type: "error", message: e.message, isShow: true });
     }
   };
 
@@ -139,53 +120,30 @@ const Converter = () => {
   const PasteToken = async () => {
     try {
       const token = await navigator.clipboard.readText();
-
       setUserJWTData((prev) => ({ ...prev, token }));
       setIsTokenPasted(true);
-      setAlertInfo({
-        type: "info",
-        message: "Paste success",
-        isShow: true,
-      });
+      setAlertInfo({ type: "info", message: "Paste success", isShow: true });
       setTimeout(() => {
         setIsTokenPasted(false);
       }, 2500);
     } catch (e) {
-      setAlertInfo({
-        type: "error",
-        message: "Paste failed: " + e.message,
-        isShow: true,
-      });
+      setAlertInfo({ type: "error", message: "Paste failed: " + e.message, isShow: true });
     }
   };
-
 
   const PasteSecretKey = async () => {
     try {
       const key = await navigator.clipboard.readText();
-
       setSecretKey({ key: key });
       setIsSecretKeyPasted(true);
-      setAlertInfo({
-        type: 'info',
-        message: 'Paste success',
-        isShow: true,
-      });
+      setAlertInfo({ type: "info", message: "Paste success", isShow: true });
       setTimeout(() => {
         setIsSecretKeyPasted(false);
       }, 2500);
-
     } catch (e) {
-      setAlertInfo({
-        type: 'error',
-        message: 'Paste failed: ' + e.message,
-        isShow: true,
-      });
+      setAlertInfo({ type: "error", message: "Paste failed: " + e.message, isShow: true });
     }
   };
-
-
-  
 
   const handleVerify = async () => {
     try {
@@ -227,7 +185,7 @@ const Converter = () => {
         setVerificationResult("");
       }
     } catch (error) {
-      return;
+      setAlertInfo({ type: "error", message: error.message, isShow: true });
     }
   };
 
@@ -239,16 +197,9 @@ const Converter = () => {
     if (typeof json !== "string") {
       json = JSON.stringify(json, undefined, 2);
     }
-
-    json = json
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;");
-
-    const jsonRegex =
-      /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+-]?\d+)?)/g;
-
-    const highlightedJson = json.replace(jsonRegex, (match) => {
+    json = json.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    const jsonRegex = /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+-]?\d+)?)/g;
+    return json.replace(jsonRegex, (match) => {
       let cls = "json-number";
       if (/^"/.test(match)) {
         cls = /:$/.test(match) ? "json-key" : "json-string";
@@ -257,23 +208,10 @@ const Converter = () => {
       } else if (/null/.test(match)) {
         cls = "json-null";
       }
-
-      if (match.includes("http://") || match.includes("https://")) {
-        return (
-          "<a target='_blank' class=" +
-          cls +
-          " href=" +
-          match +
-          ">" +
-          match +
-          "</a>"
-        );
-      } else {
-        return `<span class="${cls}">${match}</span>`;
-      }
+      return match.includes("http://") || match.includes("https://")
+        ? `<a target='_blank' class="${cls}" href=${match}>${match}</a>`
+        : `<span class="${cls}">${match}</span>`;
     });
-
-    return highlightedJson;
   };
 
   const handleOptionSelect = (selectedValue) => {
@@ -282,24 +220,14 @@ const Converter = () => {
       algorithm: selectedValue,
       token: defaultTokens[selectedValue],
     }));
-
-    if (typeof defaultSecretKeys[selectedValue] === "string") {
-      setSecretKey(defaultSecretKeys[selectedValue]);
-    } else if (typeof defaultSecretKeys[selectedValue] === "object") {
-      setSecretKey(defaultSecretKeys[selectedValue].key);
-    }
-
+    setSecretKey(defaultSecretKeys[selectedValue].key || defaultSecretKeys[selectedValue]);
     setIsOpen(false);
   };
 
   const [sKey, setSKey] = useState("");
 
   useEffect(() => {
-    if (typeof secretKey === "string") {
-      setSKey(secretKey);
-    } else if (typeof secretKey === "object") {
-      setSKey(secretKey.key);
-    }
+    setSKey(secretKey.key || secretKey);
   }, [secretKey]);
 
   return (
@@ -422,7 +350,7 @@ const Converter = () => {
             />
              <button
                 onClick={PasteSecretKey}
-                className="absolute bottom-3 right-3"
+                className="absolute bottom-1 right-1 bg-white rounded-lg p-2"
               >{ !isSecretKeyPasted ? <PasteIcon /> : <PastedIcon /> }</button>
             <p
               className={`${isWantVerify ? "" : "hidden"} ${
@@ -464,7 +392,7 @@ const Converter = () => {
               />
               <button
                 onClick={PasteToken}
-                className="absolute bottom-3 right-3"
+                className="absolute bottom-1 right-1 bg-white rounded-lg p-2"
               >{ !isTokenPasted ? <PasteIcon /> : <PastedIcon /> }</button>
             </div>
           </div>
@@ -499,7 +427,7 @@ const Converter = () => {
   );
 };
 
-export default Converter;
+export default Decoder;
 
 
 export const PasteIcon = () => {

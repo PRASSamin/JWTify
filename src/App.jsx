@@ -1,13 +1,24 @@
-import { useState } from 'react'
-import Home from './components/home'
+import Decoder from "./components/decoder";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
-
   return (
     <>
-      <Home/>
+      <BrowserRouter>
+        <Routes>
+          {["/", "/jwt-decoder", "/home"].map((path, i) => (
+            <Route
+              key={i}
+              path={path}
+              element={
+                  <Decoder />
+              }
+            />
+          ))}
+        </Routes>
+      </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

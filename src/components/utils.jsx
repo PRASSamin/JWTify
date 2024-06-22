@@ -1,6 +1,6 @@
 export const base64UrlEncode = (arrayBuffer) => {
-  let binary = "";
   const bytes = new Uint8Array(arrayBuffer);
+  let binary = "";
   bytes.forEach((byte) => {
     binary += String.fromCharCode(byte);
   });
@@ -45,18 +45,17 @@ export const pemToArrayBuffer = (pem) => {
   const base64 = pem
     .replace(/-----BEGIN (.*)-----/, "")
     .replace(/-----END (.*)-----/, "")
-    .replace(/\s+/g, "").replace(/(\r\n|\n|\r)/gm, "");
+    .replace(/\s+/g, "")
+    .replace(/(\r\n|\n|\r)/gm, "");
   const binaryString = atob(base64);
   const byteArray = new Uint8Array(binaryString.length);
-  byteArray.forEach((byte, i) => {
+  for (let i = 0; i < binaryString.length; i++) {
     byteArray[i] = binaryString.charCodeAt(i);
-  });
+  }
   return byteArray.buffer;
 };
 
-export const verifyHMAC = async (token, secret, hash) => {
-  let SecretKey = (typeof secret === 'object') ? secret.key : secret;
-  
+const verifyHMAC = async (token, secret, hash) => {
   const parts = token.split(".");
   if (parts.length !== 3) {
     throw new Error("Token structure incorrect");
@@ -64,7 +63,7 @@ export const verifyHMAC = async (token, secret, hash) => {
 
   const data = `${parts[0]}.${parts[1]}`;
   const dataBuffer = new TextEncoder().encode(data);
-  const secretBuffer = new TextEncoder().encode(SecretKey);
+  const secretBuffer = new TextEncoder().encode(secret.key || secret);
 
   const key = await crypto.subtle.importKey(
     "raw",
@@ -79,114 +78,70 @@ export const verifyHMAC = async (token, secret, hash) => {
   return newSignature === parts[2];
 };
 
-export const verifyRSA = async (token, publicKeyPem, hash) => {
-  let pem;
-  if (typeof publicKeyPem === "object") {
-    pem = publicKeyPem.key;
-  } else {
-    pem = publicKeyPem;
+const verifyRSA = async (token, publicKeyPem, hash) => {
+  const parts = token.split(".");
+  if (parts.length !== 3) {
+    throw new Error("Token structure incorrect");
   }
 
-  try {
-    const parts = token.split(".");
-    if (parts.length !== 3) {
-      throw new Error("Token structure incorrect");
-    }
+  const data = `${parts[0]}.${parts[1]}`;
+  const dataBuffer = new TextEncoder().encode(data);
+  const publicKeyArrayBuffer = pemToArrayBuffer(publicKeyPem.key || publicKeyPem);
 
-    const data = `${parts[0]}.${parts[1]}`;
-    const dataBuffer = new TextEncoder().encode(data);
+  const publicKey = await crypto.subtle.importKey(
+    "spki",
+    publicKeyArrayBuffer,
+    { name: "RSASSA-PKCS1-v1_5", hash },
+    false,
+    ["verify"]
+  );
 
-    const publicKeyArrayBuffer = pemToArrayBuffer(pem);
+  const signature = base64UrlDecode(parts[2]);
 
-    const publicKey = await crypto.subtle.importKey(
-      "spki",
-      publicKeyArrayBuffer,
-      { name: "RSASSA-PKCS1-v1_5", hash },
-      false,
-      ["verify"]
-    );
-
-    const signature = base64UrlDecode(parts[2]);
-
-    const verificationResult = await crypto.subtle.verify(
-      "RSASSA-PKCS1-v1_5",
-      publicKey,
-      signature,
-      dataBuffer
-    );
-
-    return verificationResult;
-  } catch (error) {
-    return false;
-  }
+  return await crypto.subtle.verify(
+    "RSASSA-PKCS1-v1_5",
+    publicKey,
+    signature,
+    dataBuffer
+  );
 };
 
-export const verifyECDSA = async (token, publicKeyPem, namedCurve, hash) => {
-  let pem;
-  if (typeof publicKeyPem === "object") {
-    pem = publicKeyPem.key;
-  } else {
-    pem = publicKeyPem;
+const verifyECDSA = async (token, publicKeyPem, namedCurve, hash) => {
+  const parts = token.split(".");
+  if (parts.length !== 3) {
+    throw new Error("Token structure incorrect");
   }
-  try {
-    const parts = token.split(".");
-    if (parts.length !== 3) {
-      throw new Error("Token structure incorrect");
-    }
 
-    const data = `${parts[0]}.${parts[1]}`;
-    const dataBuffer = new TextEncoder().encode(data);
+  const data = `${parts[0]}.${parts[1]}`;
+  const dataBuffer = new TextEncoder().encode(data);
+  const publicKeyArrayBuffer = pemToArrayBuffer(publicKeyPem.key || publicKeyPem);
 
-    const publicKeyArrayBuffer = pemToArrayBuffer(pem);
+  const publicKey = await crypto.subtle.importKey(
+    "spki",
+    publicKeyArrayBuffer,
+    { name: "ECDSA", namedCurve },
+    false,
+    ["verify"]
+  );
 
-    const publicKey = await crypto.subtle.importKey(
-      "spki",
-      publicKeyArrayBuffer,
-      { name: "ECDSA", namedCurve: namedCurve },
-      false,
-      ["verify"]
-    );
+  const signature = base64UrlDecode(parts[2]);
 
-    const signature = base64UrlDecode(parts[2]);
-
-    const verificationResult = await crypto.subtle.verify(
-      { name: "ECDSA", hash: hash },
-      publicKey,
-      signature,
-      dataBuffer
-    );
-
-    return verificationResult;
-  } catch (error) {
-    return false;
-  }
+  return await crypto.subtle.verify(
+    { name: "ECDSA", hash },
+    publicKey,
+    signature,
+    dataBuffer
+  );
 };
 
-export const verifyHS256 = async (token, secret) =>
-  verifyHMAC(token, secret, "SHA-256");
+export const verifyHS256 = (token, secret) => verifyHMAC(token, secret, "SHA-256");
+export const verifyHS384 = (token, secret) => verifyHMAC(token, secret, "SHA-384");
+export const verifyHS512 = (token, secret) => verifyHMAC(token, secret, "SHA-512");
 
-export const verifyHS384 = async (token, secret) =>
-  verifyHMAC(token, secret, "SHA-384");
+export const verifyRS256 = (token, publicKeyPem) => verifyRSA(token, publicKeyPem, { name: "SHA-256" });
+export const verifyRS384 = (token, publicKeyPem) => verifyRSA(token, publicKeyPem, { name: "SHA-384" });
+export const verifyRS512 = (token, publicKeyPem) => verifyRSA(token, publicKeyPem, { name: "SHA-512" });
 
-export const verifyHS512 = async (token, secret) =>
-  verifyHMAC(token, secret, "SHA-512");
-
-export const verifyRS256 = async (token, publicKeyPem) => 
-  verifyRSA(token, publicKeyPem, { name: "SHA-256" });
-
-
-export const verifyRS384 = async (token, publicKeyPem) =>
-  verifyRSA(token, publicKeyPem, { name: "SHA-384" });
-
-export const verifyRS512 = async (token, publicKeyPem) =>
-  verifyRSA(token, publicKeyPem, { name: "SHA-512" });
-
-
-export const verifyES256 = async (token, publicKeyPem) =>
-  verifyECDSA(token, publicKeyPem, "P-256", { name: "SHA-256" });
-
-export const verifyES384 = async (token, publicKeyPem) =>
-  verifyECDSA(token, publicKeyPem, "P-384", { name: "SHA-384" });
-
-export const verifyES512 = async (token, publicKeyPem) =>
-  verifyECDSA(token, publicKeyPem, "P-521", { name: "SHA-512" });
+export const verifyES256 = (token, publicKeyPem) => verifyECDSA(token, publicKeyPem, "P-256", { name: "SHA-256" });
+export const verifyES384 = (token, publicKeyPem) => verifyECDSA(token, publicKeyPem, "P-384", { name: "SHA-384" });
+export const verifyES512 = (token, publicKeyPem) => verifyECDSA(token, publicKeyPem, "P-521", { name: "SHA-512" });
