@@ -121,7 +121,6 @@ const Converter = () => {
       setDecodedHeader({});
       setDecodedPayload({});
       setDecodedSignature("");
-      setError(e.message);
     }
   };
 
