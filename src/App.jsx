@@ -1,6 +1,6 @@
 import Decoder from "./components/decoder";
 import Encoder from "./components/encoder";
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
