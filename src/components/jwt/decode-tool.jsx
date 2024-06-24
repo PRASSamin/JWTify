@@ -72,7 +72,6 @@ const DecoderTool = () => {
       setDecodedPayload({});
       setDecodedSignature("");
       console.log(e)
-      setAlertInfo({ type: "error", message: e.message, isShow: true });
     }
   };
 
