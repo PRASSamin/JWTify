@@ -1,11 +1,11 @@
 import Decoder from "./components/decoder";
 import Encoder from "./components/encoder";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <>
-      <BrowserRouter>
+      <Router>
         <Routes>
           {["/", "/jwt-decoder", "/home"].map((path, i) => (
             <Route
@@ -18,7 +18,7 @@ function App() {
           ))}
           <Route path="/jwt-encoder" element={<Encoder />}/>
         </Routes>
-      </BrowserRouter>
+      </Router>
     </>
   );
 }
