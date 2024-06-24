@@ -98,7 +98,7 @@ const DecoderTool = () => {
         ? `sk=${encodeURIComponent(SecretKey)}`
         : "";
 
-      const url = `http://localhost:5000/api/generate-jwt/${UserAlgorithm}/${encodeURIComponent(jsonPayload)}?${keyParam}`;
+      const url = `https://jwt-backend-eta.vercel.app/api/generate-jwt/${UserAlgorithm}/${encodeURIComponent(jsonPayload)}?${keyParam}`;
       const res = await axios.get(url);
 
       setAlertInfo({ message: "Successfully generated the token", type: "success", isShow: true });
