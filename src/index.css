@@ -26,6 +26,17 @@ p {
   display: none;
 }
 
+.encoded-jwt::-webkit-scrollbar {
+  display: block;
+  width: 7px;
+}
+
+.encoded-jwt::-webkit-scrollbar-thumb {
+  background-color: #bdbdbd;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
 textarea {
   resize: none;
 }
@@ -75,3 +86,4 @@ select {
   font-weight: normal;
   font-style: normal;
 }
+

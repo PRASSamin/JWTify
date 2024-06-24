@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css?family=Inconsolata:400,700");
+
+.ti-btn {
+  color: #fff;
+  font: inherit;
+  background-color: #0c4b33;
+  border: solid 4px #fff;
+  padding: 20px 30px;
+  outline: 0;
+  overflow: hidden;
+  display: inline-block;
+  position: relative;
+  -webkit-box-shadow: 0 0 0 0 rgba(#fff, 0.5);
+          box-shadow: 0 0 0 0 rgba(#fff, 0.5);
+  -webkit-transition: -webkit-box-shadow 150ms ease-out;
+  transition: -webkit-box-shadow 150ms ease-out;
+  -o-transition: box-shadow 150ms ease-out;
+  transition: box-shadow 150ms ease-out;
+  transition: box-shadow 150ms ease-out, -webkit-box-shadow 150ms ease-out;
+}
+.ti-btn:focus {
+  -webkit-box-shadow: 0 0 0 8px rgba(#fff, 0.5);
+          box-shadow: 0 0 0 8px rgba(#fff, 0.5);
+}
+
+.ripple {
+  background-color: #ff1ead;
+  width: 1rem;
+  height: 1rem;
+  position: absolute;
+  border-radius: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+      -ms-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+  mix-blend-mode: screen;
+  -webkit-animation: ripple 1250ms ease-out forwards, fade 1500ms ease-out forwards;
+          animation: ripple 1250ms ease-out forwards, fade 1500ms ease-out forwards;
+}
+
+@-webkit-keyframes ripple {
+  0% {
+    -webkit-transform: translate(-50%, -50%) scale(1);
+            transform: translate(-50%, -50%) scale(1);
+  }
+  80% {
+    -webkit-transform: translate(-50%, -50%) scale(50);
+            transform: translate(-50%, -50%) scale(50);
+  }
+  100% {
+    -webkit-transform: translate(-50%, -50%) scale(50);
+            transform: translate(-50%, -50%) scale(50);
+    opacity: 0;
+  }
+}
+
+@keyframes ripple {
+  0% {
+    -webkit-transform: translate(-50%, -50%) scale(1);
+            transform: translate(-50%, -50%) scale(1);
+  }
+  80% {
+    -webkit-transform: translate(-50%, -50%) scale(50);
+            transform: translate(-50%, -50%) scale(50);
+  }
+  100% {
+    -webkit-transform: translate(-50%, -50%) scale(50);
+            transform: translate(-50%, -50%) scale(50);
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes fade {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

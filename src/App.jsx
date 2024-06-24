@@ -1,4 +1,5 @@
 import Decoder from "./components/decoder";
+import Encoder from "./components/encoder";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
               }
             />
           ))}
+          <Route path="/jwt-encoder" element={<Encoder />}/>
         </Routes>
       </BrowserRouter>
     </>

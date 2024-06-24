@@ -1,52 +1,26 @@
 import React, { useState, useEffect, useRef } from "react";
 import "../jwt/Converter.css";
-import {
-  verifyES256,
-  verifyES384,
-  verifyES512,
-  verifyRS384,
-  verifyRS512,
-  verifyRS256,
-  verifyHS256,
-  decodeJWTPart,
-  verifyHS512,
-  verifyHS384,
-} from "../utils";
+import { verifyES256, verifyES384, verifyES512, verifyRS384, verifyRS512, verifyRS256, verifyHS256, decodeJWTPart, verifyHS512, verifyHS384 } from "../utils";
 import Alert from "../global/alert";
 
-const Decoder = () => {
+const DecoderTool = () => {
   const LoadEnv = import.meta.env.VITE_TOKEN_TEXTS;
   const PlainText = JSON.parse(LoadEnv);
   const { tokens, keys } = PlainText;
 
   const defaultTokens = {
-    HS256: tokens.HS256,
-    HS384: tokens.HS384,
-    HS512: tokens.HS512,
-    RS256: tokens.RS256,
-    RS384: tokens.RS384,
-    RS512: tokens.RS512,
-    ES256: tokens.ES256,
-    ES384: tokens.ES384,
-    ES512: tokens.ES512,
+    HS256: tokens.HS256, HS384: tokens.HS384, HS512: tokens.HS512,
+    RS256: tokens.RS256, RS384: tokens.RS384, RS512: tokens.RS512,
+    ES256: tokens.ES256, ES384: tokens.ES384, ES512: tokens.ES512,
   };
 
   const defaultSecretKeys = {
-    HS256: keys.HS256,
-    HS384: keys.HS384,
-    HS512: keys.HS512,
-    RS256: { key: keys.RS256 },
-    RS384: { key: keys.RS384 },
-    RS512: { key: keys.RS512 },
-    ES256: { key: keys.ES256 },
-    ES384: { key: keys.ES384 },
-    ES512: { key: keys.ES512 },
+    HS256: keys.HS256, HS384: keys.HS384, HS512: keys.HS512,
+    RS256: { key: keys.RS256 }, RS384: { key: keys.RS384 }, RS512: { key: keys.RS512 },
+    ES256: { key: keys.ES256 }, ES384: { key: keys.ES384 }, ES512: { key: keys.ES512 },
   };
 
-  const [userJWTData, setUserJWTData] = useState({
-    token: defaultTokens["HS256"],
-    algorithm: "HS256",
-  });
+  const [userJWTData, setUserJWTData] = useState({ token: defaultTokens["HS256"], algorithm: "HS256" });
   const [secretKey, setSecretKey] = useState(defaultSecretKeys["HS256"]);
   const [decodedHeader, setDecodedHeader] = useState({});
   const [decodedPayload, setDecodedPayload] = useState({});
@@ -58,21 +32,17 @@ const Decoder = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isTokenPasted, setIsTokenPasted] = useState(false);
   const [isSecretKeyPasted, setIsSecretKeyPasted] = useState(false);
+  const [sKey, setSKey] = useState("");
+  const [cursorPosition, setCursorPosition] = useState(null);
+
   const dropdownRef = useRef(null);
+  const textareaRef = useRef(null);
 
   const algorithmOptions = [
-    { label: "HS256", value: "HS256" },
-    { label: "HS384", value: "HS384" },
-    { label: "HS512", value: "HS512" },
-    { label: "RS256", value: "RS256" },
-    { label: "RS384", value: "RS384" },
-    { label: "RS512", value: "RS512" },
-    { label: "ES256", value: "ES256" },
-    { label: "ES384", value: "ES384" },
-    { label: "ES512", value: "ES512" },
-    { label: "PS256", value: "PS256" },
-    { label: "PS384", value: "PS384" },
-    { label: "PS512", value: "PS512" },
+    { label: "HS256", value: "HS256" }, { label: "HS384", value: "HS384" }, { label: "HS512", value: "HS512" },
+    { label: "RS256", value: "RS256" }, { label: "RS384", value: "RS384" }, { label: "RS512", value: "RS512" },
+    { label: "ES256", value: "ES256" }, { label: "ES384", value: "ES384" }, { label: "ES512", value: "ES512" },
+    { label: "PS256", value: "PS256" }, { label: "PS384", value: "PS384" }, { label: "PS512", value: "PS512" },
   ];
 
   useEffect(() => {
@@ -101,6 +71,7 @@ const Decoder = () => {
       setDecodedHeader({});
       setDecodedPayload({});
       setDecodedSignature("");
+      console.log(e)
       setAlertInfo({ type: "error", message: e.message, isShow: true });
     }
   };
@@ -150,41 +121,23 @@ const Decoder = () => {
       if (isWantVerify) {
         let isValid = false;
         switch (userJWTData.algorithm) {
-          case "HS256":
-            isValid = await verifyHS256(userJWTData.token, secretKey);
-            break;
-          case "RS256":
-            isValid = await verifyRS256(userJWTData.token, secretKey);
-            break;
-          case "HS512":
-            isValid = await verifyHS512(userJWTData.token, secretKey);
-            break;
-          case "HS384":
-            isValid = await verifyHS384(userJWTData.token, secretKey);
-            break;
-          case "RS384":
-            isValid = await verifyRS384(userJWTData.token, secretKey);
-            break;
-          case "RS512":
-            isValid = await verifyRS512(userJWTData.token, secretKey);
-            break;
-          case "ES256":
-            isValid = await verifyES256(userJWTData.token, secretKey);
-            break;
-          case "ES384":
-            isValid = await verifyES384(userJWTData.token, secretKey);
-            break;
-          case "ES512":
-            isValid = await verifyES512(userJWTData.token, secretKey);
-            break;
-          default:
-            throw new Error(`Unsupported algorithm: ${userJWTData.algorithm}`);
+          case "HS256": isValid = await verifyHS256(userJWTData.token, secretKey); break;
+          case "RS256": isValid = await verifyRS256(userJWTData.token, secretKey); break;
+          case "HS512": isValid = await verifyHS512(userJWTData.token, secretKey); break;
+          case "HS384": isValid = await verifyHS384(userJWTData.token, secretKey); break;
+          case "RS384": isValid = await verifyRS384(userJWTData.token, secretKey); break;
+          case "RS512": isValid = await verifyRS512(userJWTData.token, secretKey); break;
+          case "ES256": isValid = await verifyES256(userJWTData.token, secretKey); break;
+          case "ES384": isValid = await verifyES384(userJWTData.token, secretKey); break;
+          case "ES512": isValid = await verifyES512(userJWTData.token, secretKey); break;
+          default: throw new Error(`Unsupported algorithm: ${userJWTData.algorithm}`);
         }
         setVerificationResult(isValid ? "Valid" : "Invalid");
       } else {
         setVerificationResult("");
       }
     } catch (error) {
+      console.log(error)
       setAlertInfo({ type: "error", message: error.message, isShow: true });
     }
   };
@@ -215,20 +168,35 @@ const Decoder = () => {
   };
 
   const handleOptionSelect = (selectedValue) => {
+    const selectedToken = defaultTokens[selectedValue];
+    const selectedKey = defaultSecretKeys[selectedValue];
+  
     setUserJWTData((prev) => ({
       ...prev,
       algorithm: selectedValue,
-      token: defaultTokens[selectedValue],
+      token: selectedToken,
     }));
-    setSecretKey(defaultSecretKeys[selectedValue].key || defaultSecretKeys[selectedValue]);
+  
+    if (selectedKey) {
+      setSecretKey(selectedKey.key || selectedKey);
+      setSKey(selectedKey.key || selectedKey);
+    } else {
+      setSecretKey("");
+      setSKey("");
+    }
+  
     setIsOpen(false);
   };
-
-  const [sKey, setSKey] = useState("");
 
   useEffect(() => {
     setSKey(secretKey.key || secretKey);
   }, [secretKey]);
+  
+  useEffect(() => {
+    if (cursorPosition !== null && textareaRef.current) {
+      textareaRef.current.setSelectionRange(cursorPosition, cursorPosition);
+    }
+  }, [sKey, cursorPosition]);
 
   return (
     <div id="decoder" data-name="Decoder" className="mt-24">
@@ -236,11 +204,7 @@ const Decoder = () => {
         <div className="flex flex-col md:flex-row gap-8">
           <div className="flex flex-col gap-4 justify-start md:w-[25%]">
             <div className="flex flex-col w-full relative">
-              <div
-                className={`${
-                  !isWantVerify ? "cursor-not-allowed opacity-50 " : "hidden"
-                } rounded-b-lg bg-gray-300 w-full h-full absolute z-40`}
-              />
+              <div className={`${!isWantVerify ? "cursor-not-allowed opacity-50 " : "hidden"} rounded-b-lg bg-gray-300 w-full h-full absolute z-40`} />
               <p className="py-[6px] px-[8px] uppercase text-[12px] md:text-[13px] font-thin w-full border-t border-r border-l border-gray-400">
                 Algorithm
               </p>
@@ -253,9 +217,7 @@ const Decoder = () => {
                     >
                       {userJWTData.algorithm}
                       <svg
-                        className={`w-4 h-4 ml-2 inline-block transform ${
-                          isOpen ? "rotate-180" : "rotate-0"
-                        }`}
+                        className={`w-4 h-4 ml-2 inline-block transform ${isOpen ? "rotate-180" : "rotate-0"}`}
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                         fill="currentColor"
@@ -274,32 +236,18 @@ const Decoder = () => {
                           <div
                             key={option.value}
                             className={`option relative py-[6px] px-[8px] text-[13px] font-medium cursor-pointer ${
-                              ["PS256", "PS384", "PS512"].includes(option.value)
-                                ? ""
-                                : "hover:bg-gray-200"
-                            } ${
-                              userJWTData.algorithm === option.value
-                                ? "bg-gray-200"
-                                : ""
-                            } ${
-                              ["PS256", "PS384", "PS512"].includes(option.value)
-                                ? "disabled-option"
-                                : ""
+                              ["PS256", "PS384", "PS512"].includes(option.value) ? "" : "hover:bg-gray-200"
+                            } ${userJWTData.algorithm === option.value ? "bg-gray-200" : ""} ${
+                              ["PS256", "PS384", "PS512"].includes(option.value) ? "disabled-option" : ""
                             }`}
                             onClick={() => {
-                              if (
-                                !["PS256", "PS384", "PS512"].includes(
-                                  option.value
-                                )
-                              ) {
+                              if (!["PS256", "PS384", "PS512"].includes(option.value)) {
                                 handleOptionSelect(option.value);
                               }
                             }}
                           >
                             {option.label}
-                            {["PS256", "PS384", "PS512"].includes(
-                              option.value
-                            ) && (
+                            {["PS256", "PS384", "PS512"].includes(option.value) && (
                               <div className="cursor-not-allowed w-full h-full absolute top-0 left-0">
                                 <p className="py-[3px] px-[8px] bg-yellow-200 rounded-full border border-yellow-800 text-[10px] absolute top-1/2 right-3 transform -translate-y-1/2 text-yellow-800 font-bold text-center opacity-100 z-20">
                                   Coming Soon
@@ -340,10 +288,20 @@ const Decoder = () => {
             </p>
             <textarea
               onChange={(e) => {
-                setSecretKey({ key: e.target.value });
+                const newValue = e.target.value;
+                const newPosition = e.target.selectionStart;
+                
+                if (userJWTData.algorithm === "HS256" || userJWTData.algorithm === "HS384" || userJWTData.algorithm === "HS512") {
+                  setSecretKey(newValue);
+                } else {
+                  setSecretKey({ key: newValue });
+                }
+                setSKey(newValue);
+                setCursorPosition(newPosition);
               }}
+
               spellCheck="false"
-              defaultValue={sKey}
+              value={sKey}
               className="outline-none rounded-b-lg border border-gray-400 p-2 min-h-[120px]"
               style={{ whiteSpace: "pre-wrap", fontFamily: "monospace" }}
               type="text"
@@ -387,12 +345,12 @@ const Decoder = () => {
                 onBlur={() => setTokenInputFocused(false)}
                 value={userJWTData.token}
                 spellCheck="false"
-                className="focus:border-blue-600 text-[16px] md:text-[24px] outline-none font-mono rounded-b-lg border border-gray-400 p-2 min-h-[200px] md:min-h-[370px]"
+                className="encoded-jwt focus:border-blue-600 text-[16px] md:text-[24px] outline-none font-mono rounded-b-lg border border-gray-400 p-2 min-h-[200px] md:min-h-[370px]"
                 type="text"
               />
               <button
                 onClick={PasteToken}
-                className="absolute bottom-1 right-1 bg-white rounded-lg p-2"
+                className="absolute bottom-1 right-2 bg-white rounded-lg p-2"
               >{ !isTokenPasted ? <PasteIcon /> : <PastedIcon /> }</button>
             </div>
           </div>
@@ -427,7 +385,7 @@ const Decoder = () => {
   );
 };
 
-export default Decoder;
+export default DecoderTool;
 
 
 export const PasteIcon = () => {
@@ -457,7 +415,7 @@ export const PastedIcon = () => {
           viewBox="0 0 16 16"
         >
           <path
-            fill-rule="evenodd"
+            fillRule="evenodd"
             d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0"
           />
           <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1z" />

@@ -10,6 +10,7 @@ const JWTTop = ({ main }) => {
 
   const handleShareClose = () => {
     setIsShareOpen(false);
+    document.body.classList.remove("overflow-hidden")
   };
 
   return (

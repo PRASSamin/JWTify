@@ -1,17 +1,17 @@
 import React from 'react'
 import Header from './global/header'
-import DecoderTool from './jwt/decode-tool'
+import EncoderTool from './jwt/encode-tool'
 import JWTDoc from './jwt/jwt-doc'
 import JWTTop from './jwt/jwt-top'
-const Decoder = () => {
+const Encoder = () => {
   return (
     <div className="">
       <Header/>
-      <JWTTop main={"JWT Decoder"}/>
-      <DecoderTool />
+      <JWTTop main={"JWT Encoder"}/>
+      <EncoderTool />
       <JWTDoc />
      </div>
   )
 }
 
-export default Decoder
+export default Encoder
