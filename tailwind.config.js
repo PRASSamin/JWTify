@@ -8,6 +8,17 @@ export default {
       fontFamily: {
         shoika: ['Shoika', 'sans-serif'],
       },
+      keyframes: {
+        bounce2: {
+          '0%, 100%': { transform: 'translateY(-50%)' },
+          '50%': { transform: 'translateY(0)' },
+        }
+      },
+      animation: {
+        bounce2: 'bounce2 1s infinite',
+      }
+
+
     },
   },
   plugins: [],

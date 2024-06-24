@@ -29,7 +29,7 @@ const Header = () => {
   };
 
   return (
-    <header className="page-header border-b-[1px] border-white/20 shadow-lg bg-[#0C4B33] transition-all duration-300 fixed -top-40 left-0 right-0 z-[200]">
+    <header className="page-header border-b-[1px] border-white/20 shadow-lg bg-[#0C4B33] transition-all duration-300 fixed -top-40 left-0 right-0 z-[1000]">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="flex-1 md:flex md:items-center md:gap-12">
