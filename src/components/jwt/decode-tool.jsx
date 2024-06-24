@@ -136,8 +136,7 @@ const DecoderTool = () => {
         setVerificationResult("");
       }
     } catch (error) {
-      console.log(error)
-      setAlertInfo({ type: "error", message: error.message, isShow: true });
+      return null;
     }
   };
 
