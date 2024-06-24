@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.3 - 1.0.11] - 2024-06-25
+
+### Fixed
+- Fixed all identified bugs.
+- Resolved UI issues.
+
+### Added
+- Added new UI features.
+
+### Changed
+- Made backend more secure.
+
+
 ## [1.0.2] - 2024-06-24
 
 ### Added
