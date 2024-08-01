@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-"build": "vite build && npm run postbuild",     "postbuild": "copyfiles -u 1 ./sitemap.xml ./BingSiteAuth.xml dist/",
+"build": "vite build && npm run postbuild",
+    "postbuild": "copyfiles ./sitemap.xml ./BingSiteAuth.xml dist/",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
