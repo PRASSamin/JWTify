@@ -3,13 +3,16 @@
    <url>
       <loc>https://jwtify.onrender.com/</loc>
       <priority>0.9</priority>
+      <lastmod>2024-08-01T08:15:00+00:00</lastmod>
    </url>
    <url>
-      <loc>https://jwtify.onrender.com/#/jwt-decoder</loc>
+      <loc>https://jwtify.onrender.com/jwt-decoder</loc>
       <priority>0.8</priority>
+      <lastmod>2024-08-01T08:15:00+00:00</lastmod>
    </url>
    <url>
-      <loc>https://jwtify.onrender.com/#/jwt-encoder</loc>
+      <loc>https://jwtify.onrender.com/jwt-encoder</loc>
       <priority>0.8</priority>
+      <lastmod>2024-08-01T08:15:00+00:00</lastmod>
    </url>
 </urlset>
