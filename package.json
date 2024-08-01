@@ -1,7 +1,7 @@
 {
   "name": "pras.jwt.converter",
   "private": true,
-  "version": "1.0.11",
+  "version": "1.0.15",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -36,6 +36,6 @@
   "description": "## Overview",
   "main": "postcss.config.js",
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "pras samin",
+  "license": "MIT"
 }
