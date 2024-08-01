@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+"build": "vite build && npm run postbuild",     "postbuild": "copyfiles -u 1 ./sitemap.xml ./BingSiteAuth.xml dist/",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
@@ -24,6 +24,7 @@
     "@types/react-dom": "^18.2.22",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.19",
+    "copyfiles": "^2.4.1",
     "cpy-cli": "^5.0.0",
     "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.34.1",
@@ -31,8 +32,7 @@
     "eslint-plugin-react-refresh": "^0.4.6",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.4",
-    "vite": "^5.2.0",
-    "vite-plugin-static-copy": "^1.0.6"
+    "vite": "^5.2.0"
   },
   "description": "## Overview",
   "main": "postcss.config.js",
