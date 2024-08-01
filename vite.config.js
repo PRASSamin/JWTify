@@ -1,16 +1,32 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import fs from 'fs'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import fs from "fs";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
     {
-      name: 'generate-redirects',
+      name: "generate-redirects",
       closeBundle() {
-        fs.writeFileSync('dist/_redirects', '/* /index.html 200')
-      }
-    }
+        fs.writeFileSync("dist/_redirects", "/* /index.html 200");
+      },
+    },
+    ViteStaticCopy({
+      targets: [
+        {
+          src: "./sitemap.xml",
+          dest: "",
+        },
+      ],
+    }),
+    ViteStaticCopy({
+      targets: [
+        {
+          src: "./BingSiteAuth.xml",
+          dest: "",
+        },
+      ],
+    }),
   ],
-})
+});
