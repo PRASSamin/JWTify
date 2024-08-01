@@ -5,8 +5,8 @@ import LogoWithOutText from "../../assets/logo/jwtc-logo-wout-text.svg";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const tab = [
-    { tab: "Encode JWT", url: "/#/jwt-encoder" },
-    { tab: "Decode JWT", url: "/#/jwt-decoder" },
+    { tab: "Encode JWT", url: "/jwt-encoder" },
+    { tab: "Decode JWT", url: "/jwt-decoder" },
   ];
 
   useEffect(() => {
