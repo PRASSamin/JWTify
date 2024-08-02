@@ -7,12 +7,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
 
   useEffect(() => {
-    if (location.pathname === "/") {
-      window.location.replace("/jwt-decoder")
-    }
-  }, [])
-
-  useEffect(() => {
     if (location.pathname !== "/jwt-decoder" || location.pathname !== "/jwt-encoder" || location.pathname !== "/home") {
       window.location.replace("/jwt-decoder")
     }
