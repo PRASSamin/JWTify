@@ -6,8 +6,19 @@ import JWTTop from './jwt/jwt-top'
 const Decoder = () => {
 
   useEffect(() => {
-    document.title = "JWTify - Decode JWT"
-  })
+    document.title = "Decode JWT | JWTify";
+  
+    let calLink = document.querySelector('link[rel="canonical"]');
+  
+    if (!calLink) {
+      calLink = document.createElement('link');
+      calLink.rel = 'canonical';
+      document.head.appendChild(calLink);
+    }
+  
+    calLink.href = "https://jwtify.onrender.com/jwt-decoder";
+  }, []);
+  
 
 
   return (

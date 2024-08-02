@@ -23,5 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 .env
+jwtify-search-api-sa.json
 
 package-lock.json
