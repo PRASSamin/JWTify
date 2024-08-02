@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
-import {BrowserRouter, Route, Routes,  useLocation } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
+import Encoder from './components/encoder'
+import Decoder from './components/decoder';
 
 const App = () => {
   const location = useLocation();
