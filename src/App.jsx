@@ -6,8 +6,8 @@ const App = () => {
 
   useEffect(() => {
     if (
-      location.pathname !== "/jwt-decoder" &&
-      location.pathname !== "/jwt-encoder" &&
+      location.pathname !== "/jwt-decoder" ||
+      location.pathname !== "/jwt-encoder" ||
       location.pathname !== "/home"
     ) {
       window.location.replace("/jwt-decoder");
