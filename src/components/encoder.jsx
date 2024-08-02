@@ -6,7 +6,6 @@ import JWTTop from './jwt/jwt-top'
 const Encoder = () => {
 
   useEffect(() => {
-    // Set the document title
     document.title = "Encode JWT | JWTify";
   
     let calLink = document.querySelector('link[rel="canonical"]');

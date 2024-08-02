@@ -1,16 +1,19 @@
-import { useEffect } from "react";
-import Decoder from "./components/decoder";
-import Encoder from "./components/encoder";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
-
-function App() {
+const App = () => {
+  const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname !== "/jwt-decoder" || location.pathname !== "/jwt-encoder" || location.pathname !== "/home") {
-      window.location.replace("/jwt-decoder")
+    if (
+      location.pathname !== "/jwt-decoder" &&
+      location.pathname !== "/jwt-encoder" &&
+      location.pathname !== "/home"
+    ) {
+      window.location.replace("/jwt-decoder");
     }
-  }, [])
+  }, [location]);
+
   return (
     <>
       <BrowserRouter>
