@@ -121,7 +121,7 @@ const DecoderTool = () => {
         ? `sk=${encodeURIComponent(SecretKey)}`
         : "";
 
-      const url = `https://jwt-backend-eta.vercel.app/api/generate-jwt/${UserAlgorithm}/${encodeURIComponent(
+      const url = `${import.meta.env.VITE_BACKEND_URL}/${UserAlgorithm}/${encodeURIComponent(
         jsonPayload
       )}?${keyParam}`;
       const res = await axios.get(url);
