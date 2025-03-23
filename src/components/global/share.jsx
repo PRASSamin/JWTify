@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Alert from "../global/alert";
 import WhatsappIcon from "../../assets/icons/whatsapp.svg";
 import FacebookIcon from "../../assets/icons/facebook.svg";

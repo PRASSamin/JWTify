@@ -13,7 +13,7 @@ This project provides a comprehensive toolset for encoding, decoding, and verify
 
 ## Getting Started
 
-To access the hosted JWT tool, simply visit [JWTify](https://jwtify.onrender.com/) in your web browser.
+To access the hosted JWT tool, simply visit [JWTify](https://jwtify.pras.me/) in your web browser.
 
 ## Technologies Used
 

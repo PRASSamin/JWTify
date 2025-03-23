@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import "./ripple.css"; // Import the CSS file containing the styles
+import { useState } from "react";
+import "./ripple.css"; 
 
 const RippleButton = ({ children, className = "", rippleClass = "", onClick }) => {
   const [ripples, setRipples] = useState([]);

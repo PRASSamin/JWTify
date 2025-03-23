@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import JWTSignature from "../../assets/images/jwt-structure.png";
+import { useEffect, useState } from "react";
 import "./jwt-doc.css";
 import PageMenus from "../global/page-menus";
 
@@ -77,7 +76,7 @@ const JWTDoc = () => {
         <div className="w-full flex justify-center pt-12 pb-20">
           <img
             className="w-[80%] sm:w-[70%] md:w-[60%] lg:w-[40%] p-4 border-dashed border-2 border-black rounded-lg"
-            src={JWTSignature}
+            src={"/images/jwt-structure.png"}
             alt="structure"
           />
         </div>
@@ -97,14 +96,14 @@ const JWTDoc = () => {
           ES256. Next, input your payload in the designated text area. This
           payload should be in JSON format and include the claims you want in
           your token. After entering the payload, provide the secret or private
-          key in the "Key" field. This key is essential for signing the token.
-          Once you’ve filled in these fields, click the "Generate" button to
+          key in the &quot;Key&quot; field. This key is essential for signing the token.
+          Once you’ve filled in these fields, click the &quot;Generate&quot; button to
           create the JWT. The generated token will be displayed, and you can
           copy it for use in your application.
         </p>
         <p className="select-auto text-[15px] mb-3">
           <span className="font-semibold">Decode: </span>Decoding a JWT is
-          straightforward. Paste your JWT into the "Token" text area. The tool
+          straightforward. Paste your JWT into the &quot;Token&quot; text area. The tool
           will automatically decode the token into its three parts: header,
           payload, and signature. The decoded header and payload will be
           displayed in their respective sections, with the signature shown
@@ -113,12 +112,12 @@ const JWTDoc = () => {
         </p>
         <p className="select-auto text-[15px] mb-3">
           <span className="font-semibold">Verify: </span>If you need to verify a
-          JWT, first enable the verification feature by toggling the "Verify
-          Signature?" switch. Ensure that the correct algorithm is selected and
-          that the corresponding key is entered in the "Key" field. The tool
+          JWT, first enable the verification feature by toggling the &quot;Verify
+          Signature?&quot; switch. Ensure that the correct algorithm is selected and
+          that the corresponding key is entered in the &quot;Key&quot; field. The tool
           will automatically verify the token’s signature against the provided
-          key, displaying the result as "Valid" or "Invalid." This verification
-          process ensures the token's integrity and authenticity.
+          key, displaying the result as &quot;Valid&quot; or &quot;Invalid.&quot; This verification
+          process ensures the token&apos;s integrity and authenticity.
         </p>
       </section>
       <PageMenus pageMenus={allPageMenus} />

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const PageMenus = ({ pageMenus }) => {
   const [isPageMenuOpen, setIsPageMenuOpen] = useState(false);
@@ -56,7 +56,7 @@ const PageMenus = ({ pageMenus }) => {
     const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
 
     window.scrollTo({ top: y, behavior: "smooth" });
-    setIsPageMenuOpen(false); 
+    setIsPageMenuOpen(false);
   };
 
   return (

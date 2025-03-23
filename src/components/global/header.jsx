@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react";
-import LogoWithText from "../../assets/logo/jwtc-logo-w-text.svg";
-import LogoWithOutText from "../../assets/logo/jwtc-logo-wout-text.svg";
+import { useState, useEffect } from "react";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -41,7 +39,7 @@ const Header = () => {
                     "brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(129deg) brightness(101%) contrast(103%)",
                 }}
                 className="h-12"
-                src={LogoWithOutText}
+                src={"/logo/jwtc-logo-wout-text.svg"}
                 alt="logo"
               />
             </a>
@@ -91,15 +89,13 @@ const Header = () => {
               <div className="md:hidden block">
                 <div
                   onClick={toggleMenu}
-                  className={`${
-                    isMenuOpen ? "block" : "hidden"
-                  } backdrop-blur-sm bg-[#000000]/50 w-full h-screen absolute top-0 left-0`}
+                  className={`${isMenuOpen ? "block" : "hidden"
+                    } backdrop-blur-sm bg-[#000000]/50 w-full h-screen absolute top-0 left-0`}
                 />
 
                 <nav
-                  className={`transform transition-all duration-300 absolute bg-[#0C4B33] z-20 right-0 top-0 h-screen w-1/2 ${
-                    isMenuOpen ? "translate-x-0" : "translate-x-full"
-                  }`}
+                  className={`transform transition-all duration-300 absolute bg-[#0C4B33] z-20 right-0 top-0 h-screen w-1/2 ${isMenuOpen ? "translate-x-0" : "translate-x-full"
+                    }`}
                 >
                   <ul className="flex flex-col items-center text-[13.5px] font-bold">
                     {tab.map(({ tab, url }, index) => {

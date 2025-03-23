@@ -1,73 +1,95 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="author" content="PRAS Samin" />
+    <meta
+      name="description"
+      content="JWTify - Decode and encode JWT tokens effortlessly with JWT Converter. Secure and easy-to-use JWT tool."
+    />
+    <meta
+      name="keywords"
+      content="JWTify, JWT, JSON Web Token, Converter, decode JWT, encode JWT, secure JWT, JWT encoding, JWT decoding"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="author" content="PRAS Samin" />
-  <meta name="description"
-    content="JWTify - Decode and encode JWT tokens effortlessly with JWT Converter. Secure and easy-to-use JWT tool." />
-  <meta name="keywords"
-    content="JWTify, JWT, JSON Web Token, Converter, decode JWT, encode JWT, secure JWT, JWT encoding, JWT decoding" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <!-- Google Tag Manager -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-M92LE3MPT2"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-  <!-- Google Tag Manager -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5378121326491314"
-  crossorigin="anonymous"></script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXXXX-X"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-XXXXXXXXX-X');
-  </script>
+      gtag("config", "G-M92LE3MPT2");
+    </script>
 
-  <!-- Open Graph / Facebook -->
-  <meta property="og:title" content="JWTify - JWT Converter" />
-  <meta property="og:description"
-    content="Decode and encode JWT tokens effortlessly with JWTify. A secure and easy-to-use JWT tool." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://jwtify.onrender.com" />
-  <meta property="og:image" content="https://jwtify.onrender.com/assets/favicon-black-DwQ-OUrC.png" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="JWTify - JWT Converter" />
+    <meta
+      property="og:description"
+      content="Decode and encode JWT tokens effortlessly with JWTify. A secure and easy-to-use JWT tool."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jwtify.pras.me" />
+    <meta
+      property="og:image"
+      content="/logo/favicon-black.png"
+    />
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="JWTify - JWT Converter" />
-  <meta name="twitter:description"
-    content="A tool to decode and encode JWT tokens easily and securely. Visit JWTify for secure JWT conversion." />
-  <meta name="twitter:image" content="https://jwtify.onrender.com/assets/favicon-black-DwQ-OUrC.png" />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="JWTify - JWT Converter" />
+    <meta
+      name="twitter:description"
+      content="A tool to decode and encode JWT tokens easily and securely. Visit JWTify for secure JWT conversion."
+    />
+    <meta
+      name="twitter:image"
+      content="/logo/favicon-black.png"
+    />
 
-  <!-- Robots meta tag -->
-  <meta name="robots" content="index, follow" />
+    <!-- Robots meta tag -->
+    <meta name="robots" content="index, follow" />
 
-  <!-- Theme color -->
-  <meta name="theme-color" content="#FFFFFF" />
+    <!-- Theme color -->
+    <meta name="theme-color" content="#FFFFFF" />
 
-  <!-- Canonical link -->
-  <link rel="canonical" href="https://jwtify.onrender.com" />
+    <!-- Canonical link -->
+    <link rel="canonical" href="https://jwtify.pras.me" />
 
-  <!-- Dublin Core metadata -->
-  <meta name="DC.title" content="JWTify - JWT Converter" />
-  <meta name="DC.creator" content="PRAS Samin" />
-  <meta name="DC.description"
-    content="JWTify - Decode and encode JWT tokens effortlessly with JWT Converter. Secure and easy-to-use JWT tool." />
-  <meta name="DC.language" content="en" />
+    <!-- Dublin Core metadata -->
+    <meta name="DC.title" content="JWTify - JWT Converter" />
+    <meta name="DC.creator" content="PRAS Samin" />
+    <meta
+      name="DC.description"
+      content="JWTify - Decode and encode JWT tokens effortlessly with JWT Converter. Secure and easy-to-use JWT tool."
+    />
+    <meta name="DC.language" content="en" />
 
-  <!-- Google Search Console verification -->
-  <meta name="google-site-verification" content="vNaRXyhweWj5RilU-U-6IooUvk-43OoPckDRh7tN25Q" />
+    <!-- Google Search Console verification -->
+    <meta
+      name="google-site-verification"
+      content="vNaRXyhweWj5RilU-U-6IooUvk-43OoPckDRh7tN25Q"
+    />
     <meta name="msvalidate.01" content="30796521ECFBD71BF1A0E3479C41C3EB" />
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="https://jwtify.onrender.com/assets/favicon-black-DwQ-OUrC.png" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/logo/favicon-black.png" />
 
-  <title>JWTify - JWT Converter</title>
-</head>
+    <title>JWTify - JWT Converter</title>
+  </head>
 
-<body>
-  <div id="root">
-    
-  </div>
+  <body>
+    <div id="root"></div>
 
-  <script type="module" src="/src/main.jsx"></script>
-</body>
-
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
