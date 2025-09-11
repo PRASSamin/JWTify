@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import JwtEditor from "@/components/JwtEditor";
-import { cn } from "@/lib/utils";
+import { cn } from "@heroui/react";
 import { Alert, Tab, Tabs, Textarea } from "@heroui/react";
 import { PasteButton } from "@/components/PasteButton";
 import { ImportExample } from "./ImportExample";

@@ -3,6 +3,7 @@ import React, { Suspense } from "react";
 import { HeroUIProvider } from "@heroui/react";
 import { ToastProvider } from "@heroui/react";
 import { Progress } from "@/components/Progress";
+import { AnalyticsProvider } from "./AnalyticsProvider";
 
 const Provider = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -12,6 +13,7 @@ const Provider = ({ children }: { children: React.ReactNode }) => {
       </Suspense>
       <ToastProvider />
       {children}
+      <AnalyticsProvider />
     </HeroUIProvider>
   );
 };

@@ -1,14 +1,8 @@
-import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
 import * as jose from "jose";
 import { secp256k1 } from "@noble/curves/secp256k1";
 import { importEdDSAPem, importSecp256k1Pem } from "./util-helpers";
 import { ed25519 } from "@noble/curves/ed25519";
 import { ed448 } from "@noble/curves/ed448";
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
 
 export function debounce<T extends (...args: any[]) => void>(
   fn: T,

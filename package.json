@@ -1,8 +1,19 @@
 {
-  "name": "nextjs",
-  "version": "0.1.0",
+  "name": "jwtify",
+  "version": "2.0.1",
   "private": true,
   "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PRASSamin/jwtify"
+  },
+  "author": "PRASSamin <prassamin@gmail.com> (https://pras.me)",
+  "description": "JWTify is your open-source crypto playground. start with JWTs, play with keys, tokens, and other cryptography, all in one simple toolkit.",
+  "bugs": {
+    "url": "https://github.com/PRASSamin/jwtify/issues"
+  },
+  "homepage": "https://jwtify.pras.me/",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
@@ -12,23 +23,20 @@
   "dependencies": {
     "@heroui/react": "^2.8.2",
     "@monaco-editor/react": "^4.7.0",
+    "@next/third-parties": "^15.5.3",
     "@noble/curves": "^2.0.0",
     "@noble/hashes": "^2.0.0",
     "@radix-ui/react-navigation-menu": "^1.2.14",
     "@radix-ui/react-popover": "^1.1.15",
     "@radix-ui/react-select": "^2.2.6",
     "@radix-ui/react-slot": "^1.2.3",
+    "@vercel/analytics": "^1.5.0",
     "asn1js": "^3.0.6",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
     "file-saver": "^2.0.5",
-    "fumadocs-core": "^15.7.10",
     "jose": "^6.0.13",
     "jszip": "^3.10.1",
     "lucide-react": "^0.542.0",
     "next": "15.3.4",
-    "next-theme": "^0.1.5",
-    "next-themes": "^0.4.6",
     "node-forge": "^1.3.1",
     "nprogress": "^0.2.0",
     "pkijs": "^3.2.5",
@@ -36,11 +44,8 @@
     "react-dom": "19.1.1",
     "react-medium-image-zoom": "^5.3.0",
     "react-spring": "^10.0.1",
-    "react-toastify": "^11.0.5",
     "shiki": "^3.12.0",
-    "tailwind-merge": "^3.3.1",
     "tailwindcss-animate": "^1.0.7",
-    "tw-animate-css": "^1.3.7",
     "uuid": "^11.1.0",
     "zustand": "^5.0.8"
   },
@@ -65,5 +70,6 @@
     "typescript": "^5",
     "write-file-atomic": "^6.0.0",
     "zod": "^4.1.5"
-  }
+  },
+  "packageManager": "bun@1.2.19"
 }

@@ -3,7 +3,7 @@
 import { animated, useTransition } from "@react-spring/web";
 import { Button, ButtonProps } from "@heroui/react";
 import { Loader2 } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn } from "@heroui/react";
 
 interface LoadingButtonProps extends ButtonProps {
   loading: boolean;

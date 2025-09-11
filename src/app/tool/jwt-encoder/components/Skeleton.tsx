@@ -3,7 +3,7 @@
 import { Skeleton as SK } from "@heroui/react";
 import { Card, CardContent } from "@/components/ui/card";
 import { CopyButton } from "@/components/CopyButton";
-import { cn } from "@/lib/utils";
+import { cn } from "@heroui/react";
 
 export default function Skeleton() {
   return (

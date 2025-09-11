@@ -10,7 +10,7 @@ import {
   DropdownItem,
 } from "@heroui/react";
 import { Import, ChevronDown } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn } from "@heroui/react";
 
 interface Algorithm {
   value: string;
@@ -144,7 +144,7 @@ const AlgorithmPicker: React.FC<AlgorithmPickerProps> = ({
             ))}
           </DropdownSection>
         ) : null}
-        
+
         {otherAlgos.length > 0 ? (
           <DropdownSection title="Other Algorithms">
             {otherAlgos.map((algo) => (

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Button, ButtonProps } from "@heroui/react";
 import { Clipboard, Check } from "lucide-react";
 import { useTransition, animated } from "react-spring";
-import { cn } from "@/lib/utils";
+import { cn } from "@heroui/react";
 
 interface PasteButtonProps extends Omit<ButtonProps, "onPaste"> {
   disabled?: boolean;

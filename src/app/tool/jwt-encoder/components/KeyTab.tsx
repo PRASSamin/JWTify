@@ -1,6 +1,6 @@
 import { Button, Tab, Tabs, Textarea } from "@heroui/react";
 import { JsonEditor } from "@/components/JsonEditor";
-import { cn } from "@/lib/utils";
+import { cn } from "@heroui/react";
 import { PasteButton } from "@/components/PasteButton";
 import { useEncoderStore } from "../store";
 import { ImportButton } from "@/app/tool/jwt-encoder/components/ImportButton";

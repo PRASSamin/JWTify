@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@heroui/react";
 import React, { useEffect, useRef, useState } from "react";
 import { PasteButton } from "./PasteButton";
 

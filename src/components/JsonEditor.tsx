@@ -1,6 +1,6 @@
 import React from "react";
 import Editor, { EditorProps } from "@monaco-editor/react";
-import { cn } from "@/lib/utils";
+import { cn } from "@heroui/react";
 import { Loader2 } from "lucide-react";
 import { PasteButton } from "./PasteButton";
 

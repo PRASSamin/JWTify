@@ -1,11 +1,11 @@
 "use client";
-import { Button } from "@/components/ui/button";
+import { Button } from "@heroui/react";
 import { Github } from "./icons/github";
 import { Link } from "@/components/Link";
 import Image from "next/image";
 import { ChevronDown, Menu, X } from "lucide-react";
 import React, { FC, useEffect, useRef } from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "@heroui/react";
 import {
   Popover,
   PopoverContent,
@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/popover";
 import { tools } from "@/lib/tools/source";
 import { animated, useTransition } from "react-spring";
+import { REPO_URL } from "@/constants";
 
 const NavigationBar: FC<React.ComponentPropsWithoutRef<"div">> = ({
   className,
@@ -131,14 +132,14 @@ const NavigationBar: FC<React.ComponentPropsWithoutRef<"div">> = ({
 
           {/* Github button */}
           <Button
-            className="cursor-pointer rounded-lg transition-all duration-300 hidden md:flex"
-            variant={"ghost"}
-            size={"icon"}
-            asChild
+            className="cursor-pointer rounded-lg transition-all duration-300 hidden md:flex min-w-auto aspect-square p-0"
+            variant={"light"}
+            size={"md"}
+            as={"a"}
+            target="_blank"
+            href={REPO_URL}
           >
-            <Link target="_blank" href={"https://github.com/PRASSamin/jwtify"}>
-              <Github className="!size-5" />
-            </Link>
+            <Github className="!size-5" />
           </Button>
 
           {/* Mobile menu button */}
@@ -193,13 +194,14 @@ const NavigationBar: FC<React.ComponentPropsWithoutRef<"div">> = ({
               </nav>
 
               <div className="px-4 py-3 border-t border-border/50">
-                <Button asChild className="w-full">
-                  <Link
-                    target="_blank"
-                    href="https://github.com/PRASSamin/jwtify"
-                  >
-                    <Github className="mr-2 h-4 w-4" /> GitHub
-                  </Link>
+                <Button
+                  className="w-full rounded-lg flex items-center"
+                  target="_blank"
+                  variant="flat"
+                  href={REPO_URL}
+                  as="a"
+                >
+                  <Github className="mr-1 h-4.5 w-4.5" /> GitHub
                 </Button>
               </div>
             </animated.div>

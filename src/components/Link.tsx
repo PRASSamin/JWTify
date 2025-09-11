@@ -4,7 +4,7 @@ import NProgress from "nprogress";
 
 import { addBasePath } from "next/dist/client/add-base-path";
 import React from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "@heroui/react";
 
 function getURL(href: string) {
   return new URL(addBasePath(href), location.href);

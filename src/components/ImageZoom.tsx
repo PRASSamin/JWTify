@@ -1,6 +1,6 @@
 "use client";
 
-import { Image, type ImageProps } from "fumadocs-core/framework";
+import Image, { type ImageProps } from "next/image";
 import { type ImgHTMLAttributes } from "react";
 import Zoom, { type UncontrolledProps } from "react-medium-image-zoom";
 

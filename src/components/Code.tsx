@@ -2,7 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { CopyButton } from "./CopyButton";
 import { useEffect, useState } from "react";
 import { codeToHtml } from "shiki";
-import { cn } from "@/lib/utils";
+import { cn } from "@heroui/react";
 
 interface Props extends React.ComponentProps<typeof Card> {
   label: string;
