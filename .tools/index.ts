@@ -1,5 +1,0 @@
-import { frontmatter as pem_generator_fm } from "../src/app/tool/pem-generator/meta"
-import { frontmatter as jwt_encoder_fm } from "../src/app/tool/jwt-encoder/meta"
-import { frontmatter as jwt_decoder_fm } from "../src/app/tool/jwt-decoder/meta"
-import { frontmatter as jwk_generator_fm } from "../src/app/tool/jwk-generator/meta"
-export const tools = [{path:"src/app/tool/pem-generator/page.tsx",meta:"src/app/tool/pem-generator/meta.ts",frontmatter:pem_generator_fm,url:"/tool/pem-generator",slug:"pem-generator"},{path:"src/app/tool/jwt-encoder/page.tsx",meta:"src/app/tool/jwt-encoder/meta.ts",frontmatter:jwt_encoder_fm,url:"/tool/jwt-encoder",slug:"jwt-encoder"},{path:"src/app/tool/jwt-decoder/page.tsx",meta:"src/app/tool/jwt-decoder/meta.ts",frontmatter:jwt_decoder_fm,url:"/tool/jwt-decoder",slug:"jwt-decoder"},{path:"src/app/tool/jwk-generator/page.tsx",meta:"src/app/tool/jwk-generator/meta.ts",frontmatter:jwk_generator_fm,url:"/tool/jwk-generator",slug:"jwk-generator"}];
