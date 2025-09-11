@@ -1,0 +1,37 @@
+{
+  "short_name": "PRAS",
+  "dir": "auto",
+  "name": "",
+  "background_color": "#09090b",
+  "theme_color": "#09090b",
+  "display": "standalone",
+  "start_url": "https://pras.me/?launchedfrom=homescreen",
+  "scope": "https://pras.me",
+  "id": "https://pras.me/hb6rwGuMNIdZibvj5srL",
+  "prefer_related_applications": false,
+  "related_applications": [],
+  "icons": [
+    {
+      "src": "/favicons/favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicons/favicon-512x512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "protocol_handlers": [
+    {
+      "protocol": "web+pwa",
+      "url": "https://pras.me/?launchedfrom=homescreen&pwaprotocolredirect=%s"
+    },
+    {
+      "protocol": "web+pras",
+      "url": "https://pras.me/?launchedfrom=homescreen&pwaprotocolredirect=%s"
+    }
+  ]
+}

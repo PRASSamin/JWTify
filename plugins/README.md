@@ -1,0 +1,1 @@
+Both **frontmatter** and **mapper** plugins are inspired by **FumaDocs**. I liked how they manage MDX and metadata, so I borrowed the idea and built my own version for **Fetchy** with tweaks.

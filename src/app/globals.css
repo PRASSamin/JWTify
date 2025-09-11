@@ -1,0 +1,231 @@
+@import url("https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Cursive:wght@400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import "tailwindcss";
+
+@plugin "tailwindcss-animate";
+
+@plugin '../hero.ts';
+/* Note: You may need to change the path to fit your project structure */
+@source '../../node_modules/@heroui/theme/dist/*.{js,ts,jsx,tsx}';
+
+@custom-variant hover (&:hover);
+
+@theme {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+
+  --color-sidebar: hsl(var(--sidebar-background));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+
+  --font-popover: var(--font-poppins);
+  --font-edu: var(--font-edu);
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+:root {
+  --background: 240 10% 3.9%;
+  --foreground: 210 5.56% 92.94%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 0 0% 98%;
+  --primary-foreground: 240 5.9% 10%;
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --accent: 240 3.7% 15.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --ring: 240 4.9% 83.9%;
+  --chart-1: 220 70% 50%;
+  --chart-2: 160 60% 45%;
+  --chart-3: 30 80% 55%;
+  --chart-4: 280 65% 60%;
+  --chart-5: 340 75% 55%;
+  --radius: 0.5rem;
+  --sidebar-background: 240 5.9% 10%;
+  --sidebar-foreground: 240 4.8% 95.9%;
+  --sidebar-accent: 240 3.7% 15.9%;
+  --sidebar-accent-foreground: 240 4.8% 95.9%;
+  --sidebar-border: 240 3.7% 15.9%;
+  --sidebar-ring: 217.2 91.2% 59.8%;
+}
+
+@utility scrollbar-auto {
+  scrollbar-width: auto;
+  -ms-overflow-style: auto;
+
+  &::-webkit-scrollbar,
+  &::-webkit-scrollbar-track {
+    @apply block w-1.5 cursor-pointer;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    @apply block h-1 hover:!bg-muted-foreground/40 !bg-muted-foreground/30 hover:py-2 cursor-pointer rounded-full;
+  }
+}
+
+@utility scrollbar-hidden {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer base {
+  html {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  * {
+    @apply border-border scroll-smooth scrollbar-hidden;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  button,
+  a {
+    cursor: pointer;
+  }
+
+  button,
+  img,
+  label {
+    @apply select-none;
+    -webkit-user-drag: none;
+  }
+
+  img {
+    @apply select-none;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+  }
+}
+
+/* Zoomable Image Component */
+[data-rmiz] {
+  display: block;
+  position: relative;
+}
+
+[data-rmiz-ghost] {
+  pointer-events: none;
+  position: absolute;
+}
+
+[data-rmiz-btn-zoom],
+[data-rmiz-btn-unzoom] {
+  display: none;
+}
+
+[data-rmiz-content="found"] img {
+  cursor: zoom-in;
+}
+
+[data-rmiz-modal][open] {
+  width: 100vw /* fallback */;
+  width: 100dvw;
+
+  height: 100vh /* fallback */;
+  height: 100dvh;
+
+  background-color: transparent;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  overflow: hidden;
+}
+
+[data-rmiz-modal]:focus-visible {
+  outline: none;
+}
+
+[data-rmiz-modal-overlay] {
+  transition: background-color 0.3s;
+  position: absolute;
+  inset: 0;
+}
+
+[data-rmiz-modal-overlay="visible"] {
+  background-color: var(--color-fd-background);
+}
+
+[data-rmiz-modal-overlay="hidden"] {
+  background-color: transparent;
+}
+
+[data-rmiz-modal-content] {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+[data-rmiz-modal]::backdrop {
+  display: none;
+}
+
+[data-rmiz-modal-img] {
+  cursor: zoom-out;
+  image-rendering: high-quality;
+  transform-origin: 0 0;
+  transition: transform 0.3s;
+  position: absolute;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-rmiz-modal-overlay],
+  [data-rmiz-modal-img] {
+    transition-duration: 0.01ms !important;
+  }
+}
