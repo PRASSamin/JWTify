@@ -3,5 +3,5 @@ export const frontmatter = {
   description:
     "Easily decode and verify JSON Web Tokens with our fast, secure, and user friendly decoder.",
   priority: 1.1,
-  updatedAt: "2025-09-11T22:21:50.033Z",
+  updatedAt: "2025-09-11T22:52:12.227Z",
 };

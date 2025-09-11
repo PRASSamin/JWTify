@@ -13,7 +13,7 @@ export default function Skeleton() {
               <div className="h-[200px]" />
             </SK>
             <SK className="rounded-medium bg-muted/50 after:bg-transparent before:via-muted w-full">
-              <div className="h-[16]" />
+              <div className="h-16" />
             </SK>
           </div>
         </div>

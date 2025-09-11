@@ -8,6 +8,7 @@ import { ImportExample } from "./ImportExample";
 import { useDecoderStore } from "../store";
 import { CodeBlock } from "@/components/Code";
 import Skeleton from "./Skeleton";
+import { CopyButton } from "@/components/CopyButton";
 
 const JWTDecoder = () => {
   const {
@@ -34,18 +35,26 @@ const JWTDecoder = () => {
       <div className="flex flex-col gap-4">
         {!isNone ? (
           <>
-            <Textarea
-              label={"Signature (Secret/PEM/JWK)"}
-              minRows={8}
-              maxRows={8}
-              value={key}
-              onChange={(e) => setKey(e.target.value)}
-              variant="bordered"
-              classNames={{
-                label: "select-none !text-default-600",
-                inputWrapper: "!border-border/75 border-1 bg-muted/30",
-              }}
-            />
+            <div className="relative">
+              <PasteButton
+                onPaste={(text) => {
+                  setKey(text);
+                }}
+                className="absolute top-2 right-2 z-10"
+              />
+              <Textarea
+                label={"Signature (Secret/PEM/JWK)"}
+                minRows={8}
+                maxRows={8}
+                value={key}
+                onChange={(e) => setKey(e.target.value)}
+                variant="bordered"
+                classNames={{
+                  label: "select-none !text-default-600",
+                  inputWrapper: "!border-border/75 border-1 bg-muted/30",
+                }}
+              />
+            </div>
             <Alert
               color={isVerified ? "success" : "danger"}
               variant="faded"
