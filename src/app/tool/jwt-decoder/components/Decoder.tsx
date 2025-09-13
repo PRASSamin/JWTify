@@ -8,7 +8,6 @@ import { ImportExample } from "./ImportExample";
 import { useDecoderStore } from "../store";
 import { CodeBlock } from "@/components/Code";
 import Skeleton from "./Skeleton";
-import { CopyButton } from "@/components/CopyButton";
 
 const JWTDecoder = () => {
   const {
