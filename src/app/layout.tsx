@@ -70,7 +70,7 @@ export const metadata: Metadata = {
     creator: "@prassamin78",
   },
   verification: {
-    google: "vNaRXyhweWj5RilU-U-6IooUvk-43OoPckDRh7tN25Q",
+    google: "<meta name="1Hibq62KV62bSjoXtQEEWNH7oArNJYkycmuyJ2yOaW4",
   },
 };
 
